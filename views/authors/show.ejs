@@ -11,7 +11,7 @@
     <nav>
       <ul>
         <li><a href="/"> Home</a></li>
-        <li><a href="/authors"> Author Index </a></li>
+        <li><a href="/authors/"> Author Index </a></li>
       </ul>
     </nav>
     <main>
@@ -19,6 +19,9 @@
       <ul>
         <li>Name: <%= author.name %></li>
       </ul>
+        <form method="POST" action="/authors/<%= author.id %>?_method=DELETE">
+          <button type="submit">Delete</button>
+        </form>
     </main>
 
 <!-- javascript -->
