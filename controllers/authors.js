@@ -18,6 +18,14 @@ router.get('/new', (req, res) => {
   res.render('authors/new.ejs');
 })
 
+router.get('/:id/edit', (req, res) => {
+  Author.findById(req.params.id, (err, data) => {
+    res.render('authors/edit.ejs', {
+      author: data
+    })
+  })
+})
+
 router.get('/:id', (req, res) => {
   Author.findById(req.params.id, (err, data) => {
     if (err) {
@@ -37,6 +45,16 @@ router.post('/', (req, res) => {
     } else {
       console.log('Created an author');
       res.redirect('/authors');
+    }
+  })
+})
+
+router.put('/:id', (req, res) => {
+  Author.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect('/authors')
     }
   })
 })
