@@ -18,6 +18,18 @@ router.get('/new', (req, res) => {
   res.render('authors/new.ejs');
 })
 
+router.get('/:id', (req, res) => {
+  Author.findById(req.params.id, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('authors/show.ejs', {
+        author: data
+      })
+    }
+  })
+})
+
 router.post('/', (req, res) => {
   Author.create(req.body, (err, data) => {
     if (err) {
